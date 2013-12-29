@@ -1,5 +1,6 @@
 package org.bef
 
+import org.springframework.dao.DataIntegrityViolationException
 class FillerService {
 
     int findMaxX(List collection, int offset){
@@ -61,7 +62,7 @@ class FillerService {
             fillers, offsetX)]
     
         fillers.each{
-            log.info("ID:${it.id}  X: ${it.x}  Y: ${it.y}")
+            //log.info("ID:${it.id}  X: ${it.x}  Y: ${it.y}")
             grid[it.y][it.x] = it
         }
         
@@ -126,5 +127,21 @@ class FillerService {
             names.add(constraint.name)
         }
         return names
+    }
+    
+    def delete(Long id){
+        def filler = Filler.get(id)
+        if(!filler){
+            return false
+        }
+        else{
+            try{
+                filler.delete(flush:true)
+                return true
+            }
+            catch(DataIntegrityViolationException e){
+                return false
+            }
+        }
     }
 }

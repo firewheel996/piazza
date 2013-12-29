@@ -8,7 +8,6 @@
 <html>
   <head>
     <meta thtp-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="layout" content="main">
     <title>Get Rows</title>
   </head>
   <body>

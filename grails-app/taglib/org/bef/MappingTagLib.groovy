@@ -24,7 +24,6 @@ class MappingTagLib {
         for(int row = 0; row < grid.length; row++)
         {
             //log.info(row)
-            def colNum = 0
             out << "</tr>\n"
             out << "<tr>\n"
             out << "<th>${row}</th>"
@@ -33,28 +32,18 @@ class MappingTagLib {
                 
                 Filler filler = grid[row][col]
                 if(!filler){
-                    if(grid[row-1][col]?.height != 2)
-                        out << "<td>X</td>"
+                    
+                        out << "<td>    </td>"
                 }
                 
                 else{
-                    def x = filler?.x - offX
-                    def y = filler?.y - offY
-
-                    colNum = x + filler.length
-                    out << "<td rowspan=\"${filler.height}\" colspan=\"${filler.length}\">"
-                    out << g.link (controller: "Filler", action: "show", 
-                        id: "${filler.id}")
-                    out << "${filler}</td>\n"
                     if(filler.height == 2){
-                        supportArray[x] = true
-                        colNum++
+                        out << "<td>Tall</td>"
                     }
                     else{
-                        supportArray[x] = false
-                        supportArray[x + 1] = false
-                        colNum+=2
+                        out<< "<td>Wide</td>"
                     }
+                    
                 }
                
             }

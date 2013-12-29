@@ -3,7 +3,6 @@
 <!Doctype html>
 <html>
   <head>
-    <meta name="layout" content="main">
   <g:set var="entityName" value="${message(code: 'filler.label', default: 'Filler')}" />
   <title>Result</title>
 </head>

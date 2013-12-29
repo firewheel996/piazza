@@ -11,8 +11,8 @@ class FillerController {
     def index() {
         redirect(action: "list", params: params)
     }
-
-    def list(Integer max) {
+    
+   def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         [fillerInstanceList: Filler.list(params), fillerInstanceTotal: Filler.count()]
     }
@@ -102,8 +102,19 @@ class FillerController {
         }
     }
     
-    def massDelete(int low){
-        
+    def nukeSetup(){}
+    
+    def massDelete(){
+        def allFillers = Filler.findAllByIdGreaterThanEquals(params.low)
+        def fillerCount = allFillers.size
+        allFillers.each{
+            if(!fillerService.delete(it.id)){
+                flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'filler.label', default: 'Filler'), it.id])
+                redirect (action: "nukeSetup")
+            }
+        }
+        flash.message = "Mass delete completed. Deleted: ${fillerCount} Fillers"
+        redirect (action: "list")
     }
     
     def genSetup(){

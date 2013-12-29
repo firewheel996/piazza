@@ -7,7 +7,6 @@
 
 <html>
   <head>
-    <meta name="layout" content="main">
     <title>Display Section</title>
   </head>
   <body>
