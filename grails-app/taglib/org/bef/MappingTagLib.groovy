@@ -32,16 +32,17 @@ class MappingTagLib {
                 
                 Filler filler = grid[row][col]
                 if(!filler){
-                    
+                    if(grid[row-1][col]?.height != 2)
                         out << "<td>    </td>"
                 }
                 
                 else{
                     if(filler.height == 2){
-                        out << "<td>Tall</td>"
+                        out << "<td rowspan=2>Tall</td>"
                     }
                     else{
-                        out<< "<td>Wide</td>"
+                        out<< "<td colspan=2>Wide</td>"
+                        col++
                     }
                     
                 }

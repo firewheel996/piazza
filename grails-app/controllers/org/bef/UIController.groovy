@@ -1,9 +1,10 @@
 package org.bef
 
 class UIController {
+    def fillerService
 
     def index(){
-        redirect(action:'displayAll')
+        redirect(action:'devDisplay')
     }
     
     def displayAll(){
@@ -12,6 +13,25 @@ class UIController {
     }
     
     def display(){}
+    
+    def devDisplay(){
+        [fillers: Filler.list()]
+    }
+    
+    def addBrickAjax(){
+        try{
+            def filler = fillerService.createBrick(params.id as Long,
+                params.x as int, params.y as int, 
+                params.orientation == "0")
+            
+            render(template: "table", model: [fillers: Filler.list(), offX: 0, offY: 0])
+        }
+        catch(FillerException fe){
+            render{
+                div(class: "errors", fe.message)
+            }
+        }
+    }
     
     def displaySection(Long id){
         [section: Section.get(id)]

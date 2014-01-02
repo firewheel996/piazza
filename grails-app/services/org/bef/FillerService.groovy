@@ -1,7 +1,14 @@
 package org.bef
 
 import org.springframework.dao.DataIntegrityViolationException
+
+class FillerException extends RuntimeException{
+    String message
+    Filler filler
+}
+
 class FillerService {
+    boolean transactional = true
 
     int findMaxX(List collection, int offset){
         
@@ -69,12 +76,12 @@ class FillerService {
         return grid
     }
     
-    private Filler generateTall(int x, int y){
+    private Filler generateLong(int x, int y){
         return new Filler(donator: "Placeholder", x: x, y: y, length: 2,
             height: 1, type:"Brick")
     }
     
-    private Filler generateLong(int x, int y){
+    private Filler generateTall(int x, int y){
         return new Filler(donator: "Placeholder", x: x, y: y, length: 1,
             height: 2, type:"Brick")
     }
@@ -129,7 +136,7 @@ class FillerService {
         return names
     }
     
-    def delete(Long id){
+    boolean delete(Long id){
         def filler = Filler.get(id)
         if(!filler){
             return false
@@ -143,5 +150,27 @@ class FillerService {
                 return false
             }
         }
+    }
+    
+    Filler createBrick(Long secID, int x, int y, boolean orientation){
+        def sec = Section.get(secID)
+        if(sec){
+            Filler filler
+            if(orientation){
+                filler = generateLong(x,y)
+            }
+            else{
+                filler = generateTall(x,y)
+            }
+            sec.addToFillers(filler)
+            if(sec.save()){
+                return filler
+            }
+            else{
+                throw new FillerException(
+                message: "Invalid Filler", filler: filler)
+            }
+        }
+        throw new FillerException(message: "Invalid Section")
     }
 }
