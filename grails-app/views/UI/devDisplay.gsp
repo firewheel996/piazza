@@ -8,6 +8,7 @@
   <head>
     <title>Display for Developers</title>
     <g:javascript library="prototype"/>
+    <g:javascript src="generate.js"/>
   </head>
   <body>
     <h1>Map with Developer adding</h1>
@@ -42,19 +43,6 @@
          src="<g:createLinkTo dir='/images' file='spinner.gif'/>"/>
     </fieldset>
   </g:form>
-  <g:javascript>
-    function clearForm(e){
-      $('x').value=0;
-      $('y').value=0;
-      $('orientation').value=0;
-     }
-     function nextBrick(e){
-      $('x').value++;
-      }
-     function showSpinner(visible){
-      $('spinner').style.display = visible ? "inline":"none";
-      }
-  </g:javascript>
   <div id="map"><map:table from="${org.bef.Filler.getAll()}" offX="${0}" offY="${0}"/></div>
   </body>
 </html>

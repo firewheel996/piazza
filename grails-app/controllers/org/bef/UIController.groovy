@@ -33,6 +33,27 @@ class UIController {
         }
     }
     
+    def generateRow(){
+        [filler: Filler.list()]
+    }
+    
+    def addRowAjax(){
+         try{
+            def secID = params.sec
+            def section = Section.get(secID)
+            fillerService.generateBrickRow(params.row as int, section)
+            
+            render(template: "table", model: [fillers: Filler.list(), offX: 0, offY: 0])
+        
+         }
+         catch(FillerException fe){
+             render{
+                 div(class:"errors", fe.message)
+             }
+         
+        }
+    }
+    
     def displaySection(Long id){
         [section: Section.get(id)]
     }

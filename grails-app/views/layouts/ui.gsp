@@ -23,6 +23,8 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                                 <li><g:link class="displayAll" action="displayAll">Display</g:link></li>
+                                <li><g:link class="devDisplay" action="devDisplay">Add Bricks</g:link></li>
+                                <li><g:link class="generateRow" action="generateRow">Add Rows</g:link></li>
 			</ul>
 		</div>
 		<g:layoutBody/>

@@ -86,45 +86,57 @@ class FillerService {
             height: 2, type:"Brick")
     }
     
-    boolean generateBrickRow(int rowNum, Section sec){
-        rowNum++
-        int determinant = rowNum % 3
-        if(determinant){
-            sec.addToFillers(generateLong(1, rowNum))
-            sec.addToFillers(generateTall(2, rowNum))
-            sec.addToFillers(generateLong(5, rowNum))
-            sec.addToFillers(generateTall(6, rowNum))
-            sec.addToFillers(generateLong(9, rowNum))
-            sec.addToFillers(generateTall(10,rowNum))
-            sec.addToFillers(generateLong(13,rowNum))
-            sec.addToFillers(generateTall(14,rowNum))
-            sec.addToFillers(generateLong(17,rowNum))
+    void generateBrickRow(int rowNum, Section sec){
+        if(sec){
+            rowNum++
+            int determinant = rowNum % 3
+            if(determinant){
+                sec.addToFillers(generateLong(1, rowNum))
+                sec.addToFillers(generateTall(2, rowNum))
+                sec.addToFillers(generateLong(5, rowNum))
+                sec.addToFillers(generateTall(6, rowNum))
+                sec.addToFillers(generateLong(9, rowNum))
+                sec.addToFillers(generateTall(10,rowNum))
+                sec.addToFillers(generateLong(13,rowNum))
+                sec.addToFillers(generateTall(14,rowNum))
+                sec.addToFillers(generateLong(17,rowNum))
+            }
+            else if(determinant == 1){
+                sec.addToFillers(generateLong(0, rowNum))
+                sec.addToFillers(generateTall(1, rowNum))
+                sec.addToFillers(generateLong(4, rowNum))
+                sec.addToFillers(generateTall(5, rowNum))
+                sec.addToFillers(generateLong(8, rowNum))
+                sec.addToFillers(generateTall(9, rowNum))
+                sec.addToFillers(generateLong(12,rowNum))
+                sec.addToFillers(generateTall(13,rowNum))
+                sec.addToFillers(generateLong(16,rowNum))
+                sec.addToFillers(generateTall(17,rowNum))
+            }
+            else {
+                sec.addToFillers(generateTall(0, rowNum))
+                sec.addToFillers(generateLong(3, rowNum))
+                sec.addToFillers(generateTall(4, rowNum))
+                sec.addToFillers(generateLong(7, rowNum))
+                sec.addToFillers(generateTall(8, rowNum))
+                sec.addToFillers(generateLong(11,rowNum))
+                sec.addToFillers(generateTall(12,rowNum))
+                sec.addToFillers(generateLong(15,rowNum))
+                sec.addToFillers(generateTall(16,rowNum))
+            }
+
+            if(sec.save()){
+                return
+            }
+            else{
+                throw new FillerException(
+                message: "Something went wrong")
+            }
         }
-        else if(determinant == 1){
-            sec.addToFillers(generateLong(0, rowNum))
-            sec.addToFillers(generateTall(1, rowNum))
-            sec.addToFillers(generateLong(4, rowNum))
-            sec.addToFillers(generateTall(5, rowNum))
-            sec.addToFillers(generateLong(8, rowNum))
-            sec.addToFillers(generateTall(9, rowNum))
-            sec.addToFillers(generateLong(12,rowNum))
-            sec.addToFillers(generateTall(13,rowNum))
-            sec.addToFillers(generateLong(16,rowNum))
-            sec.addToFillers(generateTall(17,rowNum))
+        else{
+            throw new FillerException(message:
+            "Invalid Section")
         }
-        else {
-            sec.addToFillers(generateTall(0, rowNum))
-            sec.addToFillers(generateLong(3, rowNum))
-            sec.addToFillers(generateTall(4, rowNum))
-            sec.addToFillers(generateLong(7, rowNum))
-            sec.addToFillers(generateTall(8, rowNum))
-            sec.addToFillers(generateLong(11,rowNum))
-            sec.addToFillers(generateTall(12,rowNum))
-            sec.addToFillers(generateLong(15,rowNum))
-            sec.addToFillers(generateTall(16,rowNum))
-        }
-        
-        return sec.save()
     }
     
     def getConstraintNames(){
