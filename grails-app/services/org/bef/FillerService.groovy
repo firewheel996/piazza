@@ -87,42 +87,55 @@ class FillerService {
     }
     
     void generateBrickRow(int rowNum, Section sec){
+        //log.info(sec)
         if(sec){
-            rowNum++
-            int determinant = rowNum % 3
-            if(determinant){
-                sec.addToFillers(generateLong(1, rowNum))
-                sec.addToFillers(generateTall(2, rowNum))
-                sec.addToFillers(generateLong(5, rowNum))
-                sec.addToFillers(generateTall(6, rowNum))
-                sec.addToFillers(generateLong(9, rowNum))
-                sec.addToFillers(generateTall(10,rowNum))
-                sec.addToFillers(generateLong(13,rowNum))
-                sec.addToFillers(generateTall(14,rowNum))
-                sec.addToFillers(generateLong(17,rowNum))
+            int determinant = (rowNum + 1) % 4
+            log.info(determinant)
+            if(determinant == 0){
+                sec.addToFillers(generateLong(0, rowNum))
+                sec.addToFillers(generateTall(3, rowNum))
+                sec.addToFillers(generateLong(4, rowNum))
+                sec.addToFillers(generateTall(7, rowNum))
+                sec.addToFillers(generateLong(8, rowNum))
+                sec.addToFillers(generateTall(11, rowNum))
+                sec.addToFillers(generateLong(12,rowNum))
+                sec.addToFillers(generateTall(5,rowNum))
+                sec.addToFillers(generateLong(16,rowNum))
             }
             else if(determinant == 1){
-                sec.addToFillers(generateLong(0, rowNum))
+                sec.addToFillers(generateTall(0, rowNum))
+                sec.addToFillers(generateLong(1, rowNum))
+                sec.addToFillers(generateTall(4, rowNum))
+                sec.addToFillers(generateLong(5, rowNum))
+                sec.addToFillers(generateTall(8, rowNum))
+                sec.addToFillers(generateLong(9,rowNum))
+                sec.addToFillers(generateTall(12,rowNum))
+                sec.addToFillers(generateLong(13,rowNum))
+                sec.addToFillers(generateTall(16,rowNum))
+                sec.addToFillers(generateLong(17,rowNum))
+            }
+            else if(determinant == 2) {
                 sec.addToFillers(generateTall(1, rowNum))
-                sec.addToFillers(generateLong(4, rowNum))
+                sec.addToFillers(generateLong(2, rowNum))
                 sec.addToFillers(generateTall(5, rowNum))
-                sec.addToFillers(generateLong(8, rowNum))
+                sec.addToFillers(generateLong(6, rowNum))
                 sec.addToFillers(generateTall(9, rowNum))
-                sec.addToFillers(generateLong(12,rowNum))
+                sec.addToFillers(generateLong(10,rowNum))
                 sec.addToFillers(generateTall(13,rowNum))
-                sec.addToFillers(generateLong(16,rowNum))
+                sec.addToFillers(generateLong(14,rowNum))
                 sec.addToFillers(generateTall(17,rowNum))
             }
-            else {
-                sec.addToFillers(generateTall(0, rowNum))
+            else{
+                sec.addToFillers(generateTall(2, rowNum))
                 sec.addToFillers(generateLong(3, rowNum))
-                sec.addToFillers(generateTall(4, rowNum))
+                sec.addToFillers(generateTall(6, rowNum))
                 sec.addToFillers(generateLong(7, rowNum))
-                sec.addToFillers(generateTall(8, rowNum))
+                sec.addToFillers(generateTall(10, rowNum))
                 sec.addToFillers(generateLong(11,rowNum))
-                sec.addToFillers(generateTall(12,rowNum))
+                sec.addToFillers(generateTall(14,rowNum))
                 sec.addToFillers(generateLong(15,rowNum))
-                sec.addToFillers(generateTall(16,rowNum))
+                sec.addToFillers(generateTall(18,rowNum))
+                
             }
 
             if(sec.save()){
@@ -134,6 +147,7 @@ class FillerService {
             }
         }
         else{
+            log.info("Invalid Section: ${sec}")
             throw new FillerException(message:
             "Invalid Section")
         }

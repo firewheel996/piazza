@@ -24,12 +24,12 @@
         <g:field id="row" name="row" type="number" min="3" value="3"/>
       </div>
       <g:submitToRemote value="Generate"
-                        url="[controller: 'UI', action: 'addRowAjax'] "
+                        url="[controller: 'UI', action: 'addRowAjax']"
                         update="map"
                         onSuccess="nextRow(e)"
                         onLoading="showSpinner(true)"
                         onComplete="showSpinner(false)"/>
-      <img id='spinner' style='display:none' 
+      <img id="spinner" style="display:none""
            src="<g:createLinkTo dir='/images' file='spinner.gif'/>"/>
     </fieldset>
   </g:form>

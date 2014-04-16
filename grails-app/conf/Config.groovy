@@ -82,6 +82,7 @@ log4j = {
     
     info "grails.app.services"
     info "grails.app.taglib"
+    info "grails.app.controllers"
     
     appenders {
         console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')

@@ -39,7 +39,8 @@ class UIController {
     
     def addRowAjax(){
          try{
-            def secID = params.sec
+            def secID = params.id
+            //log.info(secID)
             def section = Section.get(secID)
             fillerService.generateBrickRow(params.row as int, section)
             
