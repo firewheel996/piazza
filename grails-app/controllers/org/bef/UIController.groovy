@@ -4,7 +4,7 @@ class UIController {
     def fillerService
 
     def index(){
-        redirect(action:'devDisplay')
+        redirect(action:'displayAll')
     }
     
     def displayAll(){

@@ -38,10 +38,16 @@ class MappingTagLib {
                 
                 else{
                     if(filler.height == 2){
-                        out << "<td rowspan=2>Tall</td>"
+                        out << "<td rowspan=2><a href='"
+                        out << g.createLink(controller: "filler", action:"show",
+                            id: filler.id)
+                        out << "'>Tall</a></td>"
                     }
                     else{
-                        out<< "<td colspan=2>Wide</td>"
+                        out << "<td colspan=2><a href='"
+                        out << g.createLink(controller: "filler", action:"show",
+                            id:filler.id)
+                        out << "'>Wide</a></td>"
                         col++
                     }
                     
