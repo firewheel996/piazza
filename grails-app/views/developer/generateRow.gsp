@@ -24,7 +24,7 @@
         <g:field id="row" name="row" type="number" min="3" value="3"/>
       </div>
       <g:submitToRemote value="Generate"
-                        url="[controller: 'UI', action: 'addRowAjax']"
+                        url="[controller: 'Developer', action: 'addRowAjax']"
                         update="map"
                         onSuccess="nextRow(e)"
                         onLoading="showSpinner(true)"
