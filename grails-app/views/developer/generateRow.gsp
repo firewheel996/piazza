@@ -29,7 +29,7 @@
                         onSuccess="nextRow(e)"
                         onLoading="showSpinner(true)"
                         onComplete="showSpinner(false)"/>
-      <img id="spinner" style="display:none""
+      <img id="spinner" style="display:none"
            src="<g:createLinkTo dir='/images' file='spinner.gif'/>"/>
     </fieldset>
   </g:form>

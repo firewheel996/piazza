@@ -47,5 +47,26 @@ class DeveloperController {
             }
          
         }
-    }  
+    }
+    
+    def customRow(){
+        [filler: Filler.list()]
+    }
+    def customRowAjax(){
+        try{
+            def secID = params.id
+            //log.info(secID)
+            def section = Section.get(secID)
+            fillerService.generateCustomBrickRow(section,params.row,
+                    params.orientation,params.startCol,params.rowLen)
+                
+            render(template: "table", model: [fillers: Filler.list(), offX: 0, offY: 0])
+        }
+        catch(FillerException fe){
+            render{
+                div(class:"errors", fe.message)
+            }
+         
+        }
+    }
 }

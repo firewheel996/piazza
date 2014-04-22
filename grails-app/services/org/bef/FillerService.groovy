@@ -9,6 +9,9 @@ class FillerException extends RuntimeException{
 
 class FillerService {
     boolean transactional = true
+    public static final int BLANK = 0
+    public static final int WIDE = 1
+    public static final int TALL = 2
 
     int findMaxX(List collection, int offset){
         
@@ -151,6 +154,53 @@ class FillerService {
             throw new FillerException(message:
             "Invalid Section")
         }
+    }
+    
+    void generateCustomBrickRow(Section sec,int rowNum, int startingOrient,
+                                 int startingCol,int rowLength){
+        if (sec){
+            int currentCol = startingCol
+            if(startingOrient == BLANK){
+                currentCol++
+            }
+            else if(startingOrient == WIDE){
+                sec.addToFillers(generateLong(currentCol,rowNum))
+                currentCol += 3
+            }
+            else if(startingOrient == TALL){
+                sec.addToFillers(generateTall(currentCol,rowNum))
+                currentCol++
+                if(currentCol - (startingCol+rowLength) >= 2){
+                    sec.addToFillers(generateWide(currentCol,rowNum))
+                    currentCol+=3
+                }
+            }
+            else{
+                throw new FillerException(message:
+                "Invalid starting orientation")
+            }
+            int remainder = startingCol+rowLength
+            while(currentCol < remainder){
+                if((currentCol - remainder) >= 3){
+                    sec.addToFillers(generateTall(currentCol,rowNum))
+                    currentCol++
+                    sec.addToFillers(generateWide(currentCol,rowNum))
+                    currentCol += 3
+                }
+                else{
+                    sec.addToFillers(generateTall(currentCol,rowNum))
+                    currentCol += 2
+                }
+            }
+            if(!sec.save())
+            {
+                throw new FillerException(message:
+                "Error Saving Section")
+            }
+            return
+        }
+        
+        
     }
     
     def getConstraintNames(){
