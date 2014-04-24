@@ -69,4 +69,30 @@ class DeveloperController {
          
         }
     }
+    
+    def editMessage(){
+        
+        [filler: Filler.list()]
+    }
+    
+    def editMessageAjax(){
+        
+        def filler = Filler.get(params.id)
+        if(!filler){
+            render{
+                div(class:"errors", "Filler does not exist")
+            }
+        }
+        filler.firstRow = params?.row1
+        filler.secondRow = params?.row2
+        if(filler.save()){
+            render(template: "table", model: [fillers: Filler.list(), offX: 0, offY: 0])
+        }
+        else{
+            render{
+                div(class:"errors","Problem saving filler")
+            }
+        }
+        
+    }
 }
