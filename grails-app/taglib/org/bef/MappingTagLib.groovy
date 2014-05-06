@@ -30,15 +30,27 @@ class MappingTagLib {
             
             for(int col = 0; col < grid[row].length; col++){
                 
+                if(grid[row-1][col]?.height != 2){
+                    int rel = col
+                    if(row%2 == 0){rel++}
+                    if(rel%2 == 0){
+                        out << "<td class='even'"
+                    }
+                    else{
+                        out << "<td class='odd'"
+                    }
+                }
                 Filler filler = grid[row][col]
                 if(!filler){
                     if(grid[row-1][col]?.height != 2)
-                        out << "<td>    </td>"
+                        out << ">    </td>"
                 }
                 
                 else{
+                    
                     if(filler.height == 2){
-                        out << "<td rowspan=2><a href='"
+                        
+                        out << "rowspan=2><a href='"
                         out << g.createLink(controller: "filler", action:"show",
                             id: filler.id)
                         out << "'>Tall</a></td>"
