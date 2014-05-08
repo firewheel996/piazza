@@ -10,6 +10,7 @@ class Donation {
     String specialInstructions
     boolean payed = false
     Date orderDate = new Date()
+    Date fillDate = null
     Filler filler
 
     static constraints = {
@@ -21,6 +22,12 @@ class Donation {
        payed display: false
        orderDate display: false
        filler nullable: true, display: false
+       fillDate nullable: true, display: false
        
+    }
+    
+    static unfilled = where{
+        payed
+        fillDate == null
     }
 }

@@ -95,6 +95,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${donationInstance?.fillDate}">
+				<li class="fieldcontain">
+					<span id="fillDate-label" class="property-label"><g:message code="donation.fillDate.label" default="Fill Date" /></span>
+					
+						<span class="property-value" aria-labelledby="fillDate-label"><g:formatDate date="${donationInstance?.fillDate}" /></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${donationInstance?.paymentType}">
 				<li class="fieldcontain">
 					<span id="paymentType-label" class="property-label"><g:message code="donation.paymentType.label" default="Payment Type" /></span>
