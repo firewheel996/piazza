@@ -12,6 +12,19 @@ class DeveloperController {
         [fillers: Filler.list()]
     }
     
+    def fillDonation(){
+        def donations = Donation.unfilled.list(sort:"orderDate")
+        [candidates: donations]
+    }
+    
+    def autoPlaceDonation(){
+        def donation = Donation.get(params.id)
+        if(!donation){
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'donation.label', default: 'Donation'), params.id])
+        }
+        //@Todo Create a way to find where a donation should be placed.
+    }
+    
     def addBrickAjax(){
         try{
             def filler = fillerService.createBrick(params.id as Long,
