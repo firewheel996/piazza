@@ -26,15 +26,15 @@
 					
 						<g:sortableColumn property="type" title="${message(code: 'donation.type.label', default: 'Type')}" />
 					
+						<g:sortableColumn property="firstRow" title="${message(code: 'donation.firstRow.label', default: 'First Row')}" />
+					
+						<g:sortableColumn property="fourthRow" title="${message(code: 'donation.fourthRow.label', default: 'Fourth Row')}" />
+					
+						<g:sortableColumn property="secondRow" title="${message(code: 'donation.secondRow.label', default: 'Second Row')}" />
+					
+						<g:sortableColumn property="thirdRow" title="${message(code: 'donation.thirdRow.label', default: 'Third Row')}" />
+					
 						<g:sortableColumn property="name" title="${message(code: 'donation.name.label', default: 'Name')}" />
-					
-						<g:sortableColumn property="email" title="${message(code: 'donation.email.label', default: 'Email')}" />
-					
-						<g:sortableColumn property="phone" title="${message(code: 'donation.phone.label', default: 'Phone')}" />
-					
-						<g:sortableColumn property="specialInstructions" title="${message(code: 'donation.specialInstructions.label', default: 'Special Instructions')}" />
-					
-						<g:sortableColumn property="payed" title="${message(code: 'donation.payed.label', default: 'Payed')}" />
 					
 					</tr>
 				</thead>
@@ -44,15 +44,15 @@
 					
 						<td><g:link action="show" id="${donationInstance.id}">${fieldValue(bean: donationInstance, field: "type")}</g:link></td>
 					
+						<td>${fieldValue(bean: donationInstance, field: "firstRow")}</td>
+					
+						<td>${fieldValue(bean: donationInstance, field: "fourthRow")}</td>
+					
+						<td>${fieldValue(bean: donationInstance, field: "secondRow")}</td>
+					
+						<td>${fieldValue(bean: donationInstance, field: "thirdRow")}</td>
+					
 						<td>${fieldValue(bean: donationInstance, field: "name")}</td>
-					
-						<td>${fieldValue(bean: donationInstance, field: "email")}</td>
-					
-						<td>${fieldValue(bean: donationInstance, field: "phone")}</td>
-					
-						<td>${fieldValue(bean: donationInstance, field: "specialInstructions")}</td>
-					
-						<td><g:formatBoolean boolean="${donationInstance.payed}" /></td>
 					
 					</tr>
 				</g:each>

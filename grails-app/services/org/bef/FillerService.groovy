@@ -249,4 +249,43 @@ class FillerService {
         }
         throw new FillerException(message: "Invalid Section")
     }
+    
+    def findSurroundingBricks(Long id){
+        def filler = Filler.get(id)
+        if(!filler){
+            throw new FillerException(
+            message: "Invalid Filler", filler: filler)
+        }
+        else{
+            def query = Filler.where{
+                (filler.x - x) < 5 && (filler.y - y) < 5
+            }
+            return query.list()
+        }
+    }
+    
+    def getDonationArea(Donation d, String regex = null){
+        if (regex == null){
+            def direct = Filler.findAllByDonatorIlikeAndNotSpecialPlacement(d.name)
+            if(direct != null){
+                return findSurroundingBricks(direct.get().id)
+            }
+            def less = Filler.where{
+                donator.compareToIgnoreCase(d.name) <= 0
+            }.list(sort:"y")
+            def more = Filler.where{
+                donator.compareToIgnoreCase(d.name) > 0
+            }.list(sort:"y")
+            def first = less?.get(less?.size() - 1)
+            def last = more?.get(0)
+            def list = Filler.withCriteria{
+                and{
+                    between('y', first?.y, last?.y)
+                    between('x', first?.x, last?.x)
+                }
+                
+            }
+            return list
+        }
+    }
 }

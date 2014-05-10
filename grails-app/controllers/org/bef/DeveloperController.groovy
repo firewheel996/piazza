@@ -22,7 +22,9 @@ class DeveloperController {
         if(!donation){
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'donation.label', default: 'Donation'), params.id])
         }
-        //@Todo Create a way to find where a donation should be placed.
+        if(donation.type == "Brick"){
+            
+        }
     }
     
     def addBrickAjax(){

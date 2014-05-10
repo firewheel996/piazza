@@ -2,8 +2,6 @@ package org.bef
 
 import org.springframework.dao.DataIntegrityViolationException
 
-//@ToDo create a model class to validate the donations.
-
 class DonationController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
