@@ -16,18 +16,8 @@
     <h1>Edit Message</h1>
     <g:form action="ajaxAdd">
     <fieldset class="form">
-      <div class="fieldcontain required">
-        <label for="id">Filler</label>
-        <g:select id="filler" name="id" from="${org.bef.Filler.list()}" optionKey="id" required="" value="" class="many-to-one"/>
-      </div>
-      <div class="fieldcontain required">
-        <label for="row1">Row 1</label>
-        <g:textField name="row1" maxLength="14"/>
-      </div>
-      <div class="fieldcontain required">
-        <label for="row2">Row 2</label>
-        <g:textField name="row2" maxLength="14"/>
-      </div>
+      <div id="form">
+      <g:render template="editform" model="${fillerInstance}"/></div>
       <g:submitToRemote value="Update"
                         url="[controller: 'Developer', action: 'editMessageAjax']"
                         update="map"
@@ -37,6 +27,6 @@
            src="<g:createLinkTo dir='/images' file='spinner.gif'/>"/>
     </fieldset>
     </g:form>
-    <div id="map"><map:table from="${org.bef.Filler.getAll()}" offX="${0}" offY="${0}"/></div>
+    <div id="map"><map:submitingTable from="${org.bef.Filler.getAll()}" offX="${0}" offY="${0}"/></div>
   </body>
 </html>

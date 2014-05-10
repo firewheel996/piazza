@@ -7,6 +7,11 @@ class DeveloperController {
     }
     
     def fillerService
+    
+    def selectFiller(Long id){
+        def filler = Filler.get(id)
+        render(template:"editform", model: [fillerInstance:filler])
+    }
 
     def devDisplay(){
         [fillers: Filler.list()]

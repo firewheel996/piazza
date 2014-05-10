@@ -45,7 +45,8 @@ class Filler implements Comparable {
     
     String toString(){
         def result
-        result = (firstRow ? firstRow : "Filler: ${id}")
+        def descriptor = (height == 2)? "Tall" : "Wide"
+        result = (firstRow ? firstRow : descriptor)
         if(secondRow) {result += "\n${secondRow}"}
         if(thirdRow) {result += "\n${thirdRow}"}
         if(fourthRow){result += "\n${fourthRow}"}
