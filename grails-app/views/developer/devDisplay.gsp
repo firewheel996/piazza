@@ -43,6 +43,6 @@
          src="<g:createLinkTo dir='/images' file='spinner.gif'/>"/>
     </fieldset>
   </g:form>
-  <div id="map"><map:table from="${org.bef.Filler.getAll()}" offX="${0}" offY="${0}"/></div>
+  <div id="map"><map:redirectingTable from="${org.bef.Filler.getAll()}" offX="${0}" offY="${0}"/></div>
   </body>
 </html>

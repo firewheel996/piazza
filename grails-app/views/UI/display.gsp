@@ -11,6 +11,6 @@
   </head>
   <body>
     <h1>Map</h1>
-    <map:table from="${fillers}" offX="${offx}" offY="${offy}"/>
+    <map:redirectingTable from="${fillers}" offX="${offx}" offY="${offy}"/>
   </body>
 </html>

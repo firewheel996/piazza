@@ -7,7 +7,7 @@ class MappingTagLib {
     
     def redirectingTable = { attrs ->
         
-        out << "<table border=\"1\">\n"
+        out << "<table class='map' >\n"
         out << "<tr>\n<th></th>\n"
         def fillers = attrs.from        
         def offX = (attrs.offX != null) ? attrs.offX : 0
@@ -30,36 +30,25 @@ class MappingTagLib {
             
             for(int col = 0; col < grid[row].length; col++){
                 
-                if(grid[row-1][col]?.height != 2){
-                    int rel = col
-                    if(row%2 == 0){rel++}
-                    if(rel%2 == 0){
-                        out << "<td class='even'"
-                    }
-                    else{
-                        out << "<td class='odd'"
-                    }
-                }
                 Filler filler = grid[row][col]
                 if(!filler){
                     if(grid[row-1][col]?.height != 2)
-                        out << ">    </td>"
-                }
-                
+                        out << "<td id='empty'>    </td></a>"
+                }                
                 else{
                     
                     if(filler.height == 2){
                         
-                        out << "rowspan=2><a href='"
-                        out << g.createLink(controller: "filler", action:"show",
-                            id: filler.id)
-                        out << "'>${filler}</a></td>"
+                        out << "<td class='tall' rowspan=2 style=\"background-image:url('${resource(dir: 'images', file: 'tallBrick.png')}'); background-repeat: no-repeat;\"> "
+                        out << "<a href='"
+                        out << g.createLink(controller:'filler', action:'show',id:filler.id)
+                        out << "'><input type='submit'/></a></td>"
                     }
                     else{
-                        out << "<td colspan=2><a href='"
-                        out << g.createLink(controller: "filler", action:"show",
-                            id:filler.id)
-                        out << "'>${filler}</a></td>"
+                        out << " <td class='wide' colspan=2 style=\"background-image:url('${resource(dir: 'images', file: 'wideBrick.png')}');\"> "
+                        out << "<a href='"
+                        out << g.createLink(controller:'filler', action:'show',id:filler.id)
+                        out << "'><input type='submit'/></a></td>"
                         col++
                     }
                     
@@ -74,7 +63,7 @@ class MappingTagLib {
     }
     
     def submitingTable = {attrs->
-        out << "<table border=\"1\">\n"
+        out << "<table class='map' border=\"1\">\n"
         out << "<tr>\n<th></th>\n"
         def fillers = attrs.from        
         def offX = (attrs.offX != null) ? attrs.offX : 0
@@ -110,7 +99,7 @@ class MappingTagLib {
                 Filler filler = grid[row][col]
                 if(!filler){
                     if(grid[row-1][col]?.height != 2)
-                        out << ">    </td>"
+                        out << " id='empty'>    </td>"
                 }
                 
                 else{

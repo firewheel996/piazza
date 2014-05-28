@@ -11,10 +11,10 @@ h1, h2, h3, h4, h5, h6 {
 /* BASE LAYOUT */
 
 html {
-	background-color: #ddd;
-	background-image: -moz-linear-gradient(center top, #aaa, #ddd);
+	background-color: rgb(128,209,255);
+	/*background-image: -moz-linear-gradient(center top, #aaa, #ddd);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
-	background-image: linear-gradient(top, #aaa, #ddd);
+	background-image: linear-gradient(top, #aaa, #ddd);*/
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
 	background-repeat: no-repeat;
 	height: 100%;
@@ -39,6 +39,10 @@ html * {
 body {
 	background: #ffffff;
 	color: #333333;
+        background-image:-webkit-linear-gradient(45deg,rgb(0,67,212) 1%,rgb(0,67,212) 4%,rgb(255,255,255) 24%,rgb(255,255,255) 82%,rgb(255,255,255) 82%,rgb(0,81,255) 91%);
+        background-image:-moz-linear-gradient(45deg,rgb(0,67,212) 1%,rgb(0,67,212) 4%,rgb(255,255,255) 24%,rgb(255,255,255) 82%,rgb(255,255,255) 82%,rgb(0,81,255) 91%);
+        background-image:-o-linear-gradient(45deg,rgb(0,67,212) 1%,rgb(0,67,212) 4%,rgb(255,255,255) 24%,rgb(255,255,255) 82%,rgb(255,255,255) 82%,rgb(0,81,255) 91%);
+        background-image:-ms-linear-gradient(45deg,rgb(0,67,212) 1%,rgb(0,67,212) 4%,rgb(255,255,255) 24%,rgb(255,255,255) 82%,rgb(255,255,255) 82%,rgb(0,81,255) 91%);
 	margin: 0 auto;
 	max-width: 960px;
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
@@ -48,7 +52,10 @@ body {
 }
 
 #Logo {
-	background-color: #0000FF;
+	background-image:-webkit-linear-gradient(178deg,rgb(0,8,232) 0%,#fff 79%);
+        background-image:-moz-linear-gradient(178deg,rgb(0,8,232) 0%,#fff 79%);
+        background-image:-o-linear-gradient(178deg,rgb(0,8,232) 0%,#fff 79%);
+        background-image:-ms-linear-gradient(178deg,rgb(0,8,232) 0%,#fff 79%);
 }
 
 #Logo img{
@@ -79,7 +86,8 @@ a:hover, a:active {
 }
 
 h1 {
-	color: #48802c;
+	font-family:Georgia,serif;
+        color:rgb(18, 130, 222);
 	font-weight: normal;
 	font-size: 1.25em;
 	margin: 0.8em 0 0.3em 0;
@@ -114,7 +122,10 @@ img {
 }
 
 .footer {
-	background: #0000FF;
+	background-image:-webkit-linear-gradient(-2deg,rgb(0,8,232) 0%,rgb(255,255,255) 79%);
+        background-image:-moz-linear-gradient(-2deg,rgb(0,8,232) 0%,rgb(255,255,255) 79%);
+        background-image:-o-linear-gradient(-2deg,rgb(0,8,232) 0%,rgb(255,255,255) 79%);
+        background-image:-ms-linear-gradient(-2deg,rgb(0,8,232) 0%,rgb(255,255,255) 79%);
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
@@ -479,6 +490,41 @@ th.desc a {
 
 .even {
 	background: #ffffff;
+}
+
+td.tall input, td.wide input{
+    max-height: 100%;
+    max-width: 100%;
+    background-color: transparent;
+    color: transparent;
+    border-color: transparent;
+    cursor: default;
+}
+
+table.map td{
+    line-height: 1.5em;
+    
+    text-align: left;
+    vertical-align: top;
+    padding: initial;
+}
+td.wide{
+    max-height: 50px;
+    max-width: 100px;
+    min-height: 40px;
+    min-width: 90px;
+    
+}
+td.tall{
+    max-height: 100px;
+    min-height: 90px;
+    max-width: 50px;
+    min-width: 40px;
+}
+
+#empty {
+    max-width: 50px;
+    max-height: 50px;
 }
 
 th:hover, tr:hover {
